@@ -1,0 +1,45 @@
+<div class="flip-card">
+  <div (click)="cardFlipped = !cardFlipped" [@cardFlip]="cardFlipped" class="flip-card-inner">
+    <div class="flip-card-front">
+      <img class="card-pic-front" src={{imageURI}} alt="Card">
+    </div> 
+    <div class="flip-card-back d-flex">
+      <img class="card-pic-back" src={{imageURI}} alt="Card back">
+      <div class="card-img-overlay h-100 d-flex flex-column ">
+        <button type="button" class="close align-self-end" data-toggle="tooltip" data-placement="top" title="Remove movie from list" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h1 class="card-info-title">{{title}}</h1>
+        <h4 class="card-info overflow-auto scroll">{{overview}}</h4>
+        <button (click)="openModal('custom-modal-1')" type="button" class="btn btn-primary card-button mt-auto"> Get Similar Movie</button>
+        <button (click)="openModal('custom-modal-2')" type="button" class="btn btn-primary card-button bottom-button"> Watch </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<jw-modal id="custom-modal-1">
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="row align-items-start">
+    <div class="col">
+      <div align="center">
+        <img class="rec-pic" src="https://www.themoviedb.org/t/p/original//8xEVAe84zlL9rkfYT6dZXero4KK.jpg" alt="Card">
+      </div>
+    </div>
+    <div class="col">
+      <div align="center">
+        <h1>The Matrix Reloaded</h1>
+        <p>Six months after the events depicted in The Matrix, Neo has proved to be a good omen for the free humans, as more and more humans are being freed from the matrix and brought to Zion, the one and only stronghold of the Resistance.  Neo himself has discovered his superpowers including super speed, ability to see the codes of the things inside the matrix and a certain degree of pre-cognition. But a nasty piece of news hits the human resistance: 250,000 machine sentinels are digging to Zion and would reach them in 72 hours. As Zion prepares for the ultimate war, Neo, Morpheus and Trinity are advised by the Oracle to find the Keymaker who would help them reach the Source.  Meanwhile Neo's recurrent dreams depicting Trinity's death have got him worried and as if it was not enough, Agent Smith has somehow escaped deletion, has become more powerful than before and has fixed Neo as his next target.</p>
+        <button (click)="closeModal('custom-modal-1');" type="button" class="btn btn-primary card-button">Add to Watchlist</button>
+      </div>
+    </div>
+  </div>
+</jw-modal>
+
+<jw-modal id="custom-modal-2">
+  <h1 class="align-self-center">Mark this movie as watched?</h1>
+  <div class="modal-footer">
+    <button (click)="closeModal('custom-modal-2');" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+    <button (click)="closeModal('custom-modal-2');" type="button" class="btn btn-primary">Yes</button>
+  </div>
+</jw-modal>

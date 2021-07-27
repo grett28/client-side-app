@@ -1,0 +1,25 @@
+.navbar {
+  background: #548EC3
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+  font-family: 'Oxygen Light';
+  font-weight: bold;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
