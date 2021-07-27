@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/services/rest-api.service';
 
 @Component({ 
-  templateUrl: 'watched.component.html',
-  styleUrls: ['./watched.component.css'],
+  templateUrl: 'all-movies.component.html',
+  styleUrls: ['./all-movies.component.css'],
  })
 
-export class WatchedComponent implements OnInit {
+export class AllMoviesComponent implements OnInit {
   Movie: any = [];
 
   constructor(
@@ -15,12 +15,12 @@ export class WatchedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadWatched()
+    this.loadMovies()
   }
 
   // Get movie list
-  loadWatched() {
-   return this.restApi.getWatchedMovies()
+  loadMovies() {
+   return this.restApi.getMovies()
    .subscribe((data: {}) => {  this.Movie = data; })
   }
 }

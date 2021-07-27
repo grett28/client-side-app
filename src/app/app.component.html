@@ -1,37 +1,6 @@
-<div class="container custom-container-2">
-
-  <!-- Show it when there is no employee -->
-  <div class="no-data text-center" *ngIf="Movie.length == 0">
-    <p>There is no movie added yet!</p>
+<body>
+  <app-nav-menu></app-nav-menu>
+  <div class="container">
+    <router-outlet></router-outlet>
   </div>
-
-  <!-- Employees list table, it hides when there is no employee -->
-  <div *ngIf="Movie.length !== 0">
-    <h3 class="mb-3 text-center">Movie List</h3>
-
-    <div class="col-md-12">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">User Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">IsWatched</th>
-            <th scope="col">Overview</th>
-            <th scope="col">PosterPath</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let movie of Movie">
-            <td>"hello"</td>
-            <td>{{movie.name}}</td>
-            <td>{{movie.isWatched}}</td>
-            <td>{{movie.overview}}</td>
-            <td>{{movie.posterPath}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
-
-</div>
+</body>

@@ -1,0 +1,11 @@
+.title {
+    text-align: center;
+    font-family: 'Oxygen Light';
+  }
+  
+  .movie-cards {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    align-content: space-around;
+  }

@@ -1,5 +1,5 @@
 <div class="flip-card">
-  <div (click)="cardFlipped = !cardFlipped" [@cardFlip]="cardFlipped" class="flip-card-inner">
+  <div (click)="cardClicked()" [@cardFlip]="data.state" class="flip-card-inner">
     <div class="flip-card-front">
       <img class="card-pic-front" src={{imageURI}} alt="Card">
     </div> 

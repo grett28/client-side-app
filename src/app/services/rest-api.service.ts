@@ -26,7 +26,7 @@ export class RestApiService {
     })
   }  
 
-  // HttpClient API get() method => Fetch employees list
+  // HttpClient API get() method => Fetch movie list
   getMovies(): Observable<Movie> {
     return this.http.get<Movie>(this.apiURL + '/movies')
     .pipe(
@@ -35,7 +35,25 @@ export class RestApiService {
     )
   }
 
-  // HttpClient API get() method => Fetch employee
+  //HttpClient API get() method => Fetch unwatched movie list
+  getUnwatchedMovies(): Observable<Movie>{
+    return this.http.get<Movie>(this.apiURL + '/unwatched')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+   //HttpClient API get() method => Fetch watched movie list
+   getWatchedMovies(): Observable<Movie>{
+    return this.http.get<Movie>(this.apiURL + '/watched')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  // HttpClient API get() method => Fetch movie
   getMovie(Id): Observable<Movie> {
     return this.http.get<Movie>(this.apiURL + '/movies/' + Id)
     .pipe(

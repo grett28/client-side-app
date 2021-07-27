@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { FormModalService } from '../form-modal/form-modal.service';
-
+import { CardData } from 'src/app/_interfaces/card-data.model';
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -10,18 +10,38 @@ import { FormModalService } from '../form-modal/form-modal.service';
 
   animations: [
     trigger('cardFlip', [
-      state('false', style({ transform: 'none' })),
-      state('true', style({ transform: 'rotateY(180deg)' })),
-      transition('false => true', animate('600ms ease-out')),
-      transition('true => false', animate('600ms ease-out')),
-    ]),
-    ],
+      state('default', style({
+        transform: 'none'
+      })),
+      state('flipped', style({
+        transform: 'rotateY(180deg)'
+      })),
+      transition('default => flipped', [
+        animate('400ms')
+      ]),
+      transition('flipped => default', [
+        animate('400ms')
+      ])
+    ])
+  ]
 })
 
 export class MovieCardComponent implements OnInit{
   @Input() imageURI: string;
   @Input() title: string;
   @Input() overview: string;
+
+  data: CardData = {
+    state: "default"
+  };
+
+  cardClicked() {
+    if (this.data.state === "default") {
+      this.data.state = "flipped";
+    } else {
+      this.data.state = "default";
+    }
+  }
 
   bodyText: string;
 
