@@ -44,8 +44,8 @@ export class RestApiService {
     )
   }
 
-   //HttpClient API get() method => Fetch watched movie list
-   getWatchedMovies(): Observable<Movie>{
+  //HttpClient API get() method => Fetch watched movie list
+  getWatchedMovies(): Observable<Movie>{
     return this.http.get<Movie>(this.apiURL + '/watched')
     .pipe(
       retry(1),
@@ -54,8 +54,8 @@ export class RestApiService {
   }
 
   // HttpClient API get() method => Fetch movie
-  getMovie(Id): Observable<Movie> {
-    return this.http.get<Movie>(this.apiURL + '/movies/' + Id)
+  getMovie(id): Observable<Movie> {
+    return this.http.get<Movie>(this.apiURL + '/movies/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -63,13 +63,13 @@ export class RestApiService {
   }  
 
   // HttpClient API post() method => Create employee
-  /*addMovie(movie): Observable<Movie> {
-    return this.http.post<Movie>(this.apiURL + '/employees', JSON.stringify(employee), this.httpOptions)
+  getRecommendedMovie(id): Observable<Movie> {
+    return this.http.get<Movie>(this.apiURL + '/recommendation/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
-  }  */
+  }  
 
   // HttpClient API put() method => Update employee
  /* updateMovie(id, employee): Observable<Employee> {
