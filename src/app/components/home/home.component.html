@@ -2,11 +2,12 @@
 
  <!-- Show it when there is no employee -->
  <div class="no-data text-center" *ngIf="Movie.length == 0">
-  <p>There is no movie added yet!</p>
+  <p>There are no movies added yet!</p>
 </div>
 
 <div *ngIf="Movie.length !== 0">
   <body class="movie-cards">
-    <app-movie-card *ngFor="let movie of Movie" [imageURI]=movie.posterPath [title]=movie.name [overview]=movie.overview [movieId]=movie.id></app-movie-card>
+    <app-movie-card *ngFor="let movie of Movie" [imageURI]=movie.posterPath [title]=movie.name [overview]=movie.overview [movieId]=movie.id>
+    </app-movie-card>
   </body>
 </div>

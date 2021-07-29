@@ -11,9 +11,7 @@ import { RestApiService } from 'src/app/services/rest-api.service';
 export class HomeComponent implements OnInit{
   Movie: any = [];
 
-  constructor(
-    public restApi: RestApiService
-  ) { }
+  constructor(public restApi: RestApiService) { }
 
   ngOnInit() {
     this.loadUnwatched()

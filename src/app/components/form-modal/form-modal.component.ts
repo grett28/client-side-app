@@ -1,9 +1,10 @@
 import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { FormModalService } from './form-modal.service';
 
 @Component({
-  selector: 'jw-modal',
+  selector: 'app-form-modal',
   templateUrl: './form-modal.component.html',
   styleUrls: ['./form-modal.component.less'],
   encapsulation: ViewEncapsulation.None

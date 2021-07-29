@@ -16,6 +16,8 @@ import { FetchDataComponent } from './components/fetch-data/fetch-data.component
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { FormModalComponent } from './components/form-modal/form-modal.component';
 import { AllMoviesComponent } from './components/all-movies/all-movies.component';
+import { RecommendationComponent } from './components/recommendation/recommendation.component';
+import { AddMovieComponent } from './components/add-movie/add-movie.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AllMoviesComponent } from './components/all-movies/all-movies.component
     FetchDataComponent,
     MovieCardComponent,
     FormModalComponent,
-    AllMoviesComponent
+    AllMoviesComponent,
+    RecommendationComponent,
+    AddMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,7 @@ import { AllMoviesComponent } from './components/all-movies/all-movies.component
       { path: 'watched', component: WatchedComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       {path: 'all-movies', component: AllMoviesComponent},
+      {path: 'add-movie', component: AddMovieComponent}
     ])
   ],
   schemas: [
