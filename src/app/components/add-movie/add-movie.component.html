@@ -1,16 +1,12 @@
-<form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<h1 class="page-text">Search results for: {{movie_title}}</h1>
+   <!-- Show it when there is no employee -->
+ <div class="no-data text-center" *ngIf="Movie.length == 0">
+  <p>There are no movies found. Please try searching for something different!</p>
+</div>
+  <div *ngIf="Movie.length !== 0">
+    <body>
+      <div *ngFor="let movie of Movie">
+      <app-search-result *ngIf="movie.overview !== '' " [movieResult]=movie></app-search-result>
+      </div>
+    </body>
+  </div>
