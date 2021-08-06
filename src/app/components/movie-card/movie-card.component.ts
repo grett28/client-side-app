@@ -28,17 +28,16 @@ import { Subscription } from 'rxjs';
   ]
 })
 
-export class MovieCardComponent{
+export class MovieCardComponent implements OnInit{
   @Input() imageURI: string;
   @Input() title: string;
   @Input() overview: string;
-  @Input() movieId: string;
-  subscription: Subscription = new Subscription();
-  Movie: any = [];
+  @Input() movie: any;
 
-  recPoster: string;
-  recName: string;
-  recOverview: string;
+  recMovie: any = [];
+  Movie: any = [];
+  status: string;
+  errorMessage: string;
 
   data: CardData = {
     state: "default"
@@ -46,6 +45,9 @@ export class MovieCardComponent{
 
   constructor(private modalService: FormModalService, public restApi: RestApiService) { }
 
+  ngOnInit(){
+    this.loadRecommendations(this.movie.id);
+  }
   //flip card on click
   cardClicked() {
     if (this.data.state === "default") {
@@ -63,14 +65,52 @@ export class MovieCardComponent{
   //close Modal on click
   closeModal(id: string) {
     this.modalService.close(id);
-    this.subscription.unsubscribe();
-    //this.Movie = [];
-    console.log(this.Movie);
+     console.log(this.Movie);
+     this.reloadCurrentPage();
   }
 
   //get movie recommendation
   loadRecommendations(movieId){
      return this.restApi.getRecommendedMovie(movieId)
-    .subscribe((data: {}) => {  this.Movie = data; });
+    .subscribe((data: {}) => {  this.recMovie = data; });
     }
+
+  watchMovie(movieId){
+    window.location.reload();
+    console.log(movieId);
+    return this.restApi.patchWatchMovie(movieId)
+    .subscribe((data: {}) => { this.Movie = data; });
+  }
+
+  removeMovie(movieId){
+    window.location.reload();
+    return this.restApi.deleteMovie(movieId)
+    .subscribe({
+      next: data => {
+          this.status = 'Delete successful';
+      },
+      error: error => {
+          this.errorMessage = error.message;
+          console.error('There was an error!', error);
+      }
+  });
+  }
+
+        // Get movie list
+  addMovie(movie) {
+    console.log(movie);
+    return this.restApi.postAddMovie(movie).
+    subscribe(
+      (val) => {
+          console.log("POST call successful value returned in body", val);},
+      response => {
+        console.log("POST call in error", response);},
+      () => {
+          console.log("The POST observable is now completed.");
+      });;
+   }
+
+  reloadCurrentPage() {
+    window.location.reload();
+   }
 }

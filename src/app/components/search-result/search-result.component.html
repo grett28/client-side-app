@@ -9,16 +9,16 @@
         {{movieResult.overview}}
         </div>
         <div class="row justify-content-md-center">
-            <button (click)="openModal('custom-modal-1')" type="button" class="btn btn-primary card-button bottom-button"> Add to watchlist </button>
+            <button (click)="openModal(movieResult.name)" type="button" class="btn btn-primary card-button bottom-button"> Add to watchlist </button>
         </div>
        </div>
     </div>
   </div>
 
-  <app-form-modal id="custom-modal-1">
+  <app-form-modal id={{movieResult.name}}>
     <h1 class="align-self-center"> Add this {{movieResult.name}} to your watchlist?</h1>
     <div class="modal-footer">
-      <button (click)="closeModal('custom-modal-1');" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-      <button (click)="addMovie(movieResult); closeModal('custom-modal-1')" type="button" class="btn btn-primary">Yes</button>
+      <button (click)="closeModal(movieResult.name);" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+      <button (click)="addMovie(movieResult); closeModal(movieResult.name)" type="button" class="btn btn-primary">Yes</button>
     </div>
   </app-form-modal>

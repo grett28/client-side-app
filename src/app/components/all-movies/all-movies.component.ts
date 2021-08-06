@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RestApiService } from 'src/app/services/rest-api.service';
+import 'src/styles.css'
 
 @Component({ 
   templateUrl: 'all-movies.component.html',

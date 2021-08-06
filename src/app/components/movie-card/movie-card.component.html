@@ -1,45 +1,54 @@
 <div class="flip-card">
   <div (click)="cardClicked()" [@cardFlip]="data.state" class="flip-card-inner">
     <div class="flip-card-front">
-      <img class="card-pic-front" src={{imageURI}} alt="Card">
+      <img class="card-pic-front" src={{movie.posterPath}} alt="Card">
     </div> 
     <div class="flip-card-back d-flex">
-      <img class="card-pic-back" src={{imageURI}} alt="Card back">
+      <img class="card-pic-back" src={{movie.posterPath}} alt="Card back">
       <div class="card-img-overlay h-100 d-flex flex-column ">
-        <button type="button" class="close align-self-end" data-toggle="tooltip" data-placement="top" title="Remove movie from list" aria-label="Close">
+        <button (click)="removeMovie(movie.id)" type="button" class="close align-self-end" data-toggle="tooltip" data-placement="top" title="Remove movie from list" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h1 class="card-info-title">{{title}}</h1>
-        <h4 class="card-info overflow-auto scroll">{{overview}}</h4>
-        <button (click)="openModal('custom-modal-1'); loadRecommendations(movieId); recPoster = Movie.posterPath ; recName = Movie.name ; recOverview = Movie.overview" type="button" class="btn btn-primary card-button mt-auto"> Get Similar Movie</button>
-        <button (click)="openModal('custom-modal-2')" type="button" class="btn btn-primary card-button bottom-button"> Watch </button>
+        <h1 class="card-info-title">{{movie.name}}</h1>
+        <h4 class="card-info overflow-auto scroll">{{movie.overview}}</h4>
+        <button (click)="openModal(movie.name)" type="button" class="btn btn-primary card-button mt-auto">Get Recommended Movie</button>
+        <button *ngIf="movie.isWatched == false" (click)="openModal(movie.overview)" type="button" class="btn btn-primary card-button bottom-button"> Watch </button>
+        <button *ngIf="movie.isWatched == true" (click)="openModal(movie.posterPath)" type="button" class="btn btn-primary card-button bottom-button"> Move to Watchlist </button>
       </div>
     </div>
   </div>
 </div>
 
-<app-form-modal id="custom-modal-1">
-  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<app-form-modal id={{movie.name}}>
+  <button (click)="closeModal(movie.name)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 <div class="row align-items-start">
   <div class="col">
       <div align="center">
-        <img class="rec-pic" src={{recPoster}} alt="Card">
+        <img class="rec-pic" src={{recMovie.posterPath}} alt="Card">
       </div>
   </div>
   <div class="col">
     <div align="center">
-      <h1>{{recName}}</h1>
-      <p>{{recOverview}}</p>
-      <button (click)="closeModal('custom-modal-1')" type="button" class="btn btn-primary card-button">Add to Watchlist</button>
+      <h1>{{recMovie.name}}</h1>
+      <p>{{recMovie.overview}}</p>
+      <button (click)="addMovie(recMovie);" type="button" class="btn btn-primary card-button">Add to Watchlist</button>
     </div>
   </div>
 </div>
 </app-form-modal>
 
-<app-form-modal id="custom-modal-2">
+<app-form-modal id={{movie.overview}}>
   <h1 class="align-self-center">Mark this movie as watched?</h1>
   <div class="modal-footer">
-    <button (click)="closeModal('custom-modal-2');" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-    <button (click)="closeModal('custom-modal-2');" type="button" class="btn btn-primary">Yes</button>
+    <button (click)="closeModal(movie.overview);" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+    <button (click)="watchMovie(movie.id);" type="button" class="btn btn-primary">Yes</button>
+  </div>
+</app-form-modal>
+
+<app-form-modal id={{movie.posterPath}}>
+  <h1 class="align-self-center">Move this movie to the watchlist?</h1>
+  <div class="modal-footer">
+    <button (click)="closeModal(movie.posterPath);" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+    <button (click)="watchMovie(movie.id);" type="button" class="btn btn-primary">Yes</button>
   </div>
 </app-form-modal>

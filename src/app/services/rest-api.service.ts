@@ -88,6 +88,24 @@ export class RestApiService {
     catchError(this.handleError)
     )
   }
+
+  //HttpClient API patch() method => Watch movie
+  patchWatchMovie(id): Observable<Movie> {
+    return this.http.patch<Movie>(this.apiURL + '/watch/' + id, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  //HttpClient API delete() method => Delete movie
+  deleteMovie(id): Observable<Movie>{
+    return this.http.delete<Movie>(this.apiURL + '/delete/' + id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
   // HttpClient API put() method => Update employee
  /* updateMovie(id, employee): Observable<Employee> {
     return this.http.put<Employee>(this.apiURL + '/employees/' + id, JSON.stringify(employee), this.httpOptions)

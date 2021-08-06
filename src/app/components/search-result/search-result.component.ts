@@ -18,6 +18,7 @@ export class SearchResultComponent{
     //open Modal on click
     openModal(id: string) {
       this.modalService.open(id);
+      console.log(this.movieResult);
     }
   
     //close Modal on click
