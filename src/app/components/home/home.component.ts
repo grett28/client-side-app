@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RestApiService } from 'src/app/services/rest-api.service';
+import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +9,18 @@ import { RestApiService } from 'src/app/services/rest-api.service';
   styleUrls: ['./home.component.css'],
 })
 
-export class HomeComponent implements OnInit{
-  Movie: any = [];
+export class HomeComponent implements OnInit {
 
-  constructor(public restApi: RestApiService) { }
+  Movie: any = []
+
+  constructor( public restApi: RestApiService ) {}
 
   ngOnInit() {
-    this.loadUnwatched()
+    this.loadPopular()
   }
 
-  // Get movie list
-  loadUnwatched() {
-   return this.restApi.getUnwatchedMovies()
-   .subscribe((data: {}) => {  this.Movie = data; })
+  loadPopular(){
+    return this.restApi.getPopular()
+    .subscribe((data: {}) => {  this.Movie = data; })
   }
-
 }

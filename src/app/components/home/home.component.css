@@ -1,11 +1,98 @@
-.title {
-  text-align: center;
-  font-family: 'Oxygen Light';
-}
+.flip-card {
+    background-color: transparent;
+    width: 248px;
+    height: 373px;
+    perspective: 1000px;
+    margin: 12px;
+  }
 
-.movie-cards {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  align-content: space-around;
-}
+  
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /*text-align: center;*/
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    -webkit-filter: drop-shadow(0px 4px 4px black);
+    filter: drop-shadow(0px 4px 4px black);
+  }
+  
+  /* Style the back side */
+  .flip-card-back {
+    color: white;
+    transform: rotateY(180deg);
+  }
+  
+  .card-info-title {
+    font-family: Fira Sans;
+    font-size: 21px;
+    font-weight: bold;
+    text-shadow: 0 1px #000000, 0 0 3px #000000;
+  }
+  
+  .card-info {
+    font-family: Fira Sans;
+    font-size: 12px;
+    text-shadow: 0 1px #000000, 0 0 3px #000000;
+  }
+  
+  .card-pic-front {
+    width: 241px;
+    height: 360px;
+  }
+  
+  .card-pic-back {
+    width: 241px;
+    height: 360px;
+    filter: blur(5px);
+  }
+  
+  .card-img-overlay{
+  }
+  
+  .card-button {
+    background: #548EC3;
+    font-family: 'Fira Sans';
+    color: white;
+    font-size: 12px;
+    text-shadow: 0 1px #000000, 0 0 3px #000000;
+  }
+  
+  .bottom-button{
+      margin-top: 15px;
+      margin-bottom: 15px;
+  }
+  
+  .scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgba(0,0,0,0);
+  }
+  
+  .scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+  }
+  
+  .rec-pic {
+    width: 353px;
+  }
+  
+  

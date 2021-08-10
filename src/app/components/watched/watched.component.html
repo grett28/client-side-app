@@ -7,6 +7,6 @@
 
 <div *ngIf="Movie.length !== 0">
   <body class="movie-cards">
-    <app-movie-card *ngFor="let movie of Movie" [movie]=movie></app-movie-card>
+    <app-movie-card *ngFor="let movie of Movie" [movie]=movie [myList]=true></app-movie-card>
   </body>
 </div>

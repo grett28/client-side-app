@@ -106,6 +106,16 @@ export class RestApiService {
       catchError(this.handleError)
     )
   }
+
+  //HttpGet API get() methos => Get popular movies
+  getPopular(): Observable<Movie>{
+    return this.http.get<Movie>(this.apiURL + '/popular')
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }  
+
   // HttpClient API put() method => Update employee
  /* updateMovie(id, employee): Observable<Employee> {
     return this.http.put<Employee>(this.apiURL + '/employees/' + id, JSON.stringify(employee), this.httpOptions)

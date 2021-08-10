@@ -5,6 +5,7 @@ import { FormModalService } from '../form-modal/form-modal.service';
 import { CardData } from 'src/app/_interfaces/card-data.model';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -29,10 +30,8 @@ import { Subscription } from 'rxjs';
 })
 
 export class MovieCardComponent implements OnInit{
-  @Input() imageURI: string;
-  @Input() title: string;
-  @Input() overview: string;
   @Input() movie: any;
+  @Input() myList: boolean;
 
   recMovie: any = [];
   Movie: any = [];
@@ -46,7 +45,8 @@ export class MovieCardComponent implements OnInit{
   constructor(private modalService: FormModalService, public restApi: RestApiService) { }
 
   ngOnInit(){
-    this.loadRecommendations(this.movie.id);
+    if(this.myList)
+      this.loadRecommendations(this.movie.id);
   }
   //flip card on click
   cardClicked() {
