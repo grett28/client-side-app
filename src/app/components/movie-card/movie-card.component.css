@@ -63,10 +63,7 @@
 .card-pic-back {
   width: 241px;
   height: 360px;
-  filter: blur(5px);
-}
-
-.card-img-overlay{
+  filter: blur(10px);
 }
 
 .card-button {
@@ -80,6 +77,10 @@
 .bottom-button{
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.add-button {
+  margin-bottom: 15px;
 }
 
 .scroll::-webkit-scrollbar {

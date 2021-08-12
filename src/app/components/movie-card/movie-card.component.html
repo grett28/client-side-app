@@ -14,7 +14,7 @@
         <button *ngIf="myList" (click)="openModal(movie.name)" type="button" class="btn btn-primary card-button mt-auto">Get Recommended Movie</button>
         <button *ngIf="!movie.isWatched &&myList" (click)="openModal(movie.overview)" type="button" class="btn btn-primary card-button bottom-button"> Watch </button>
         <button *ngIf="movie.isWatched && myList" (click)="openModal(movie.posterPath)" type="button" class="btn btn-primary card-button bottom-button"> Move to Watchlist </button>
-        <button *ngIf="!myList" type="button" class="btn btn-primary card-button mt-auto">Add to Watchlist</button>
+        <button *ngIf="!myList" (click)="addMovie(movie)" type="button" class="btn btn-primary card-button mt-auto add-button">Add to Watchlist</button>
       </div>
     </div>
   </div>
