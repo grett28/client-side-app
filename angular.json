@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "projects": {
+    "watchlist-ui": {
+      "projectType": "application",
+      "root": "apps/watchlist-ui",
+      "sourceRoot": "apps/watchlist-ui/src",
+      "prefix": "watchlist",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/watchlist-ui",
+            "index": "apps/watchlist-ui/src/index.html",
+            "main": "apps/watchlist-ui/src/main.ts",
+            "polyfills": "apps/watchlist-ui/src/polyfills.ts",
+            "tsConfig": "apps/watchlist-ui/tsconfig.app.json",
+            "assets": [
+              "apps/watchlist-ui/src/favicon.ico",
+              "apps/watchlist-ui/src/assets"
+            ],
+            "styles": ["apps/watchlist-ui/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/watchlist-ui/src/environments/environment.ts",
+                  "with": "apps/watchlist-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "watchlist-ui:build:production"
+            },
+            "development": {
+              "browserTarget": "watchlist-ui:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "watchlist-ui:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/watchlist-ui/src/**/*.ts",
+              "apps/watchlist-ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/watchlist-ui"],
+          "options": {
+            "jestConfig": "apps/watchlist-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "watchlist-ui-e2e": {
+      "root": "apps/watchlist-ui-e2e",
+      "sourceRoot": "apps/watchlist-ui-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/watchlist-ui-e2e/cypress.json",
+            "tsConfig": "apps/watchlist-ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "watchlist-ui:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "watchlist-ui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/watchlist-ui-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "css"
+    }
+  },
+  "defaultProject": "watchlist-ui"
+}
