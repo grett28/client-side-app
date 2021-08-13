@@ -1,0 +1,17 @@
+<h1 class="page-text">Search results for: {{ movie_title }}</h1>
+<!-- Show it when there is no employee -->
+<div class="no-data text-center" *ngIf="Movie.length == 0">
+  <p>
+    There are no movies found. Please try searching for something different!
+  </p>
+</div>
+<div *ngIf="Movie.length !== 0">
+  <body>
+    <div *ngFor="let movie of Movie">
+      <app-search-result
+        *ngIf="movie.overview !== ''"
+        [movieResult]="movie"
+      ></app-search-result>
+    </div>
+  </body>
+</div>

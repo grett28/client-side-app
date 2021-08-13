@@ -1,0 +1,24 @@
+<div>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+  ></button>
+  <div class="row align-items-start">
+    <div class="col">
+      <div align="center">
+        <img class="rec-pic" src="{{ Movie.PosterPath }}" alt="Card" />
+      </div>
+    </div>
+    <div class="col">
+      <div align="center">
+        <h1>{{ Movie.name }}</h1>
+        <p>{{ Movie.overview }}</p>
+        <button type="button" class="btn btn-primary card-button">
+          Add to Watchlist
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
