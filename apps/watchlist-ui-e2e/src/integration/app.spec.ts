@@ -1,13 +1,5 @@
-import { getGreeting } from '../support/app.po';
-
-describe('watchlist-ui', () => {
-  beforeEach(() => cy.visit('/'));
-
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to watchlist-ui!');
-  });
-});
+describe('The Home Page', () => {
+  it('successfully loads', () => {
+    cy.visit('http://localhost:4200') // change URL to match your dev URL
+  })
+})
