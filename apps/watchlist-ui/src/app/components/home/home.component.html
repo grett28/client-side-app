@@ -1,0 +1,8 @@
+<h1>What's Popular</h1>
+  <owl-carousel-o [options]="customOptions">
+    <ng-template *ngFor="let movie of Movies" carouselSlide>
+      <div class="slide">
+        <watchlist-movie-card [movie]=movie [myList]=false></watchlist-movie-card>
+      </div>
+    </ng-template>
+  </owl-carousel-o>

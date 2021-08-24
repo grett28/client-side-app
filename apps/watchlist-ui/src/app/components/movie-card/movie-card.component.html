@@ -1,0 +1,85 @@
+<div class="flip-card">
+  <div (click)="cardClicked()" [@cardFlip]="data.state" class="flip-card-inner">
+    <div class="flip-card-front">
+      <img class="card-pic-front" src={{movie.posterPath}} alt="Card">
+    </div> 
+    <div class="flip-card-back d-flex">
+      <img class="card-pic-back" src={{movie.posterPath}} alt="Card back">
+      <div class="card-img-overlay h-100 d-flex flex-column ">
+        <button *ngIf=myList (click)="open(removeModal)" type="button" class="btn close align-self-end" data-toggle="tooltip" data-placement="top" title="Remove movie from list" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h1 class="card-info-title">{{movie.name}}</h1>
+        <h4 class="card-info overflow-auto scroll">{{movie.overview}}</h4>
+       <button *ngIf="myList" (click)="openLg(recModal)" type="button" class="btn btn-primary card-button mt-auto">Get Recommended Movie</button>
+        <button *ngIf="!movie.isWatched &&myList" (click)="open(watchModal)" type="button" class="btn btn-primary card-button bottom-button"> Watch </button>
+        <button *ngIf="movie.isWatched && myList" (click)="open(watchlistModal)" type="button" class="btn btn-primary card-button bottom-button"> Move to Watchlist </button>
+        <button *ngIf="!myList" (click)="open(addModal)" type="button" class="btn btn-primary card-button mt-auto add-button">Add to Watchlist</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #removeModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> Remove this movie from your collection?</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">No</button>
+    <button type="button" class="btn btn-outline-dark" (click)="removeMovie(movie.id);modal.close('Save click')">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #watchModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> Mark this movie as watched?</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">No</button>
+    <button type="button" class="btn btn-outline-dark" (click)="watchMovie(movie.id);modal.close('Save click')">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #watchlistModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> Move this movie to watchlist?</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">No</button>
+    <button type="button" class="btn btn-outline-dark" (click)="watchMovie(movie.id);modal.close('Save click')">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #addModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> Add this movie to your watchlist?</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">No</button>
+    <button type="button" class="btn btn-outline-dark" (click)="addMovie(movie);modal.close('Save click')">Yes</button>
+  </div>
+</ng-template>
+
+<ng-template #recModal let-modal>
+  <div class="modal-header">
+    <button type="button" class="btn close self-align-right" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row align-items-start">
+      <div class="col">
+          <div align="center">
+            <img class="rec-pic" src={{recMovie.posterPath}} alt="Card">
+          </div>
+      </div>
+      <div class="col">
+        <div align="center">
+          <h1>{{recMovie.name}}</h1>
+          <p>{{recMovie.overview}}</p>
+          <button (click)="addMovie(recMovie);" type="button" class="btn btn-primary card-button">Add to Watchlist</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

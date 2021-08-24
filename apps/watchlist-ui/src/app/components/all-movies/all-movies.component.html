@@ -1,0 +1,12 @@
+<h1 class="title">All Saved Movies</h1>
+
+ <!-- Show it when there is no employee -->
+ <div class="no-data text-center" *ngIf="Movies.length === 0">
+  <p>There are no saved movies!</p>
+</div>
+
+<div *ngIf="Movies.length !== 0">
+  <body class="movie-cards">
+    <watchlist-movie-card *ngFor="let movie of Movies" [movie]=movie [myList]=true></watchlist-movie-card>
+  </body>
+</div>
